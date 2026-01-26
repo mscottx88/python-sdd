@@ -39,66 +39,74 @@ def _validate_container_name(name: str) -> None:
 
 def pytest_configure(config):
     """Register custom markers and verify test environment infrastructure."""
-    # Verify Docker Desktop is running
-    try:
-        result = subprocess.run(  # noqa: S603  # Docker command is hardcoded, no user input
-            ["docker", "info"],  # noqa: S607  # Docker is system-installed via PATH
-            capture_output=True,
-            text=True,
-            check=True,
-            timeout=5,
-        )
-    except FileNotFoundError:
-        pytest.exit(
-            "Docker is not installed or not in PATH.\n"
-            "Install Docker Desktop: https://www.docker.com/products/docker-desktop",
-            returncode=1,
-        )
-    except subprocess.CalledProcessError:
-        pytest.exit(
-            "Docker Desktop is not running.\n"
-            "Start Docker Desktop and wait for it to be ready, then retry.",
-            returncode=1,
-        )
-    except subprocess.TimeoutExpired:
-        pytest.exit(
-            "Docker command timed out. Docker Desktop may be starting up.\n"
-            "Wait for Docker Desktop to be fully ready, then retry.",
-            returncode=1,
-        )
+    # Skip Docker checks in CI environments (GitHub Actions, etc.)
+    skip_docker_check = os.getenv("SKIP_DOCKER_CHECK", "").lower() in (
+        "true",
+        "1",
+        "yes",
+    )
 
-    # Check database container is running
-    db_container_name = os.getenv("DB_CONTAINER_NAME", "python-sdd-db-1")
-    _validate_container_name(db_container_name)  # Prevent injection attacks
-
-    try:
-        result = subprocess.run(  # noqa: S603  # Input validated above
-            [  # noqa: S607  # Docker is system-installed via PATH
-                "docker",
-                "ps",
-                "--filter",
-                f"name={db_container_name}",
-                "--format",
-                "{{.Status}}",
-            ],
-            capture_output=True,
-            text=True,
-            check=True,
-            timeout=5,
-        )
-        if not result.stdout.strip():
+    if not skip_docker_check:
+        # Verify Docker Desktop is running
+        try:
+            result = subprocess.run(  # noqa: S603  # Docker command is hardcoded, no user input
+                ["docker", "info"],  # noqa: S607  # Docker is system-installed via PATH
+                capture_output=True,
+                text=True,
+                check=True,
+                timeout=5,
+            )
+        except FileNotFoundError:
             pytest.exit(
-                f"Database container '{db_container_name}' is not running.\n"
-                f"Start the container: docker-compose up -d\n"
-                f"Or check container name matches DB_CONTAINER_NAME env variable.",
+                "Docker is not installed or not in PATH.\n"
+                "Install Docker Desktop: https://www.docker.com/products/docker-desktop",
                 returncode=1,
             )
-    except subprocess.CalledProcessError as e:
-        pytest.exit(
-            f"Failed to check database container status: {e}\n"
-            f"Ensure Docker Desktop is running and try: docker ps",
-            returncode=1,
-        )
+        except subprocess.CalledProcessError:
+            pytest.exit(
+                "Docker Desktop is not running.\n"
+                "Start Docker Desktop and wait for it to be ready, then retry.",
+                returncode=1,
+            )
+        except subprocess.TimeoutExpired:
+            pytest.exit(
+                "Docker command timed out. Docker Desktop may be starting up.\n"
+                "Wait for Docker Desktop to be fully ready, then retry.",
+                returncode=1,
+            )
+
+        # Check database container is running
+        db_container_name = os.getenv("DB_CONTAINER_NAME", "python-sdd-db-1")
+        _validate_container_name(db_container_name)  # Prevent injection attacks
+
+        try:
+            result = subprocess.run(  # noqa: S603  # Input validated above
+                [  # noqa: S607  # Docker is system-installed via PATH
+                    "docker",
+                    "ps",
+                    "--filter",
+                    f"name={db_container_name}",
+                    "--format",
+                    "{{.Status}}",
+                ],
+                capture_output=True,
+                text=True,
+                check=True,
+                timeout=5,
+            )
+            if not result.stdout.strip():
+                pytest.exit(
+                    f"Database container '{db_container_name}' is not running.\n"
+                    f"Start the container: docker-compose up -d\n"
+                    f"Or check container name matches DB_CONTAINER_NAME env variable.",
+                    returncode=1,
+                )
+        except subprocess.CalledProcessError as e:
+            pytest.exit(
+                f"Failed to check database container status: {e}\n"
+                f"Ensure Docker Desktop is running and try: docker ps",
+                returncode=1,
+            )
 
     # Verify database connection (quick connectivity check)
     test_db_host = os.getenv("PGHOST", "localhost")
@@ -123,9 +131,12 @@ def pytest_configure(config):
             returncode=1,
         )
 
-    print(
-        "\\n[OK] Test environment verified: Docker Desktop running, database container available"
-    )
+    if skip_docker_check:
+        print("\\n[OK] Test environment verified: CI mode, database connection available")
+    else:
+        print(
+            "\\n[OK] Test environment verified: Docker Desktop running, database container available"
+        )
 
     config.addinivalue_line(
         "markers", "integration: Integration tests requiring database"

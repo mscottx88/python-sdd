@@ -33,6 +33,8 @@ jobs:
       PGUSER: postgres
       PGPASSWORD: postgres
       DB_CONTAINER_NAME: postgres
+      CI: true
+      SKIP_DOCKER_CHECK: true
 
     steps:
       - uses: actions/checkout@v6
