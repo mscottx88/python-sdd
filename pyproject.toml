@@ -3,21 +3,31 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hub-template-python"
-version = "0.0.1"
-description = "Your project description"
+name = "csv-postgres-pipeline"
+version = "0.1.0"
+description = "High-performance CSV to PostgreSQL data pipeline with bulk loading and concurrent processing"
 authors = [
-  {name = "Your Name", email = "your.email@nearform.com"}
+  {name = "NearForm", email = "info@nearform.com"}
 ]
-urls = {Homepage = "https://github.com/nearform/your-project"}
+urls = {Homepage = "https://github.com/nearform/csv-postgres-pipeline"}
 requires-python = ">=3.13"
 
 readme = "README.md"
 
-dependencies = []
+dependencies = [
+    "psycopg[binary]>=3.2.0",
+    "psycopg-pool>=3.2.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+csv-postgres-pipeline = "src.csv_postgres_pipeline.cli:main"
+
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0.0",
+  "pytest-cov>=6.0.0",
+  "pytest-mock>=3.15.1",
   "mypy>=1.0.0",
   "ruff>=0.8.0",
   "pre-commit>=4.0.0"
@@ -56,6 +66,16 @@ ignore = []
 "__init__.py" = ["F401"]
 "tests/*" = [
     "S101",  # asserts allowed in tests
+    "S106",  # hardcoded passwords in test fixtures are acceptable
+    "S105",  # hardcoded password strings in test assertions are acceptable
+    "B017",  # blind exception catching in some test scenarios is acceptable
+    "E501",  # long lines in test docstrings and assertions are acceptable
+]
+"src/csv_postgres_pipeline/models.py" = [
+    "S101",  # asserts used for post-validation invariant checks
+]
+"src/csv_postgres_pipeline/cli.py" = [
+    "S106",  # dummy password in dry-run fallback config
 ]
 
 [tool.ruff.format]
@@ -72,6 +92,7 @@ exclude = [
 
 [tool.mypy]
 python_version = "3.13"
+mypy_path = "$MYPY_CONFIG_FILE_DIR"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -86,7 +107,31 @@ ignore_missing_imports = true
 module = "tests.*"
 disallow_untyped_defs = false
 
+[tool.pylint.messages_control]
+disable = [
+    "redefined-outer-name",  # W0621: pytest fixtures commonly redefine outer names (intentional pattern)
+    "duplicate-code",  # R0801: test fixtures often have similar setup code (acceptable pattern)
+]
+
+[tool.pylint."tests.*"]
+disable = [
+    "line-too-long",  # C0301: test docstrings and assertions can be long for clarity
+    "subprocess-run-check",  # W1510: check parameter handled by test assertions
+    "no-else-return",  # R1705: explicit else blocks aid test readability
+    "use-implicit-booleaness-not-comparison",  # C1803: explicit comparisons clearer in tests
+    "too-many-arguments",  # R0913: test fixtures and mocks often need many parameters
+    "too-many-positional-arguments",  # R0917: test fixtures and mocks often need many parameters
+    "too-many-locals",  # R0914: complex test scenarios naturally have many local variables
+    "too-many-statements",  # R0915: complex test scenarios can have many statements
+    "unused-argument",  # W0613: pytest fixtures may not use all mock parameters
+    "protected-access",  # W0212: testing internal methods is acceptable in unit tests
+    "unnecessary-lambda",  # W0108: lambdas in tests often aid clarity even if technically unnecessary
+    "import-outside-toplevel",  # C0415: lazy imports in tests are acceptable
+    "too-few-public-methods",  # R0903: test classes don't need minimum method counts
+]
+
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
@@ -95,4 +140,18 @@ addopts = [
     "-v",
     "--strict-markers",
     "--tb=short",
+    "--cov=src/csv_postgres_pipeline",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+markers = [
+    "integration: marks tests as integration tests (require database)",
+    "contract: marks tests as contract tests (test external API contracts)",
+    "unit: marks tests as unit tests (fast, isolated)",
+]
+
+[dependency-groups]
+dev = [
+    "pytest-cov>=7.0.0",
+    "pytest-dotenv>=0.5.2",
 ]
