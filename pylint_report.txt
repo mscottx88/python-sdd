@@ -1,0 +1,81 @@
+************* Module src.csv_postgres_pipeline.cli
+src\csv_postgres_pipeline\cli.py:97: [W0718(broad-exception-caught), main] Catching too general exception Exception
+src\csv_postgres_pipeline\cli.py:70: [W0707(raise-missing-from), main] Consider explicitly re-raising using 'raise ConfigurationError(str(e)) from e'
+src\csv_postgres_pipeline\cli.py:83: [R1705(no-else-return), main] Unnecessary "else" after "return", remove the "else" and de-indent the code inside it
+src\csv_postgres_pipeline\cli.py:89: [W1203(logging-fstring-interpolation), main] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:92: [W1203(logging-fstring-interpolation), main] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:95: [W1203(logging-fstring-interpolation), main] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:98: [W1203(logging-fstring-interpolation), main] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:118: [W0621(redefined-outer-name), _build_db_config] Redefining name 'database' from outer scope (line 15)
+src\csv_postgres_pipeline\cli.py:160: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:164: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:167: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:178: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:181: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:191: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:217: [W0718(broad-exception-caught), _handle_single_file_mode] Catching too general exception Exception
+src\csv_postgres_pipeline\cli.py:197: [C0415(import-outside-toplevel), _handle_single_file_mode] Import outside toplevel (time)
+src\csv_postgres_pipeline\cli.py:212: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:224: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:229: [W1203(logging-fstring-interpolation), _handle_single_file_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:141: [R0911(too-many-return-statements), _handle_single_file_mode] Too many return statements (7/6)
+src\csv_postgres_pipeline\cli.py:144: [W0613(unused-argument), _handle_single_file_mode] Unused argument 'pipeline_config'
+src\csv_postgres_pipeline\cli.py:239: [R0914(too-many-locals), _handle_batch_mode] Too many local variables (21/15)
+src\csv_postgres_pipeline\cli.py:257: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:261: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:267: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:270: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:284: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:286: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:289: [R1705(no-else-return), _handle_batch_mode] Unnecessary "else" after "return", remove the "else" and de-indent the code inside it
+src\csv_postgres_pipeline\cli.py:290: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:295: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:299: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:324: [C0415(import-outside-toplevel), _handle_batch_mode] Import outside toplevel (time)
+src\csv_postgres_pipeline\cli.py:345: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:345: [W1309(f-string-without-interpolation), _handle_batch_mode] Using an f-string that does not have any interpolated variables
+src\csv_postgres_pipeline\cli.py:346: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:347: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:348: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:349: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:350: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:353: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:356: [R1705(no-else-return), _handle_batch_mode] Unnecessary "else" after "return", remove the "else" and de-indent the code inside it
+src\csv_postgres_pipeline\cli.py:358: [W1203(logging-fstring-interpolation), _handle_batch_mode] Use lazy % formatting in logging functions
+src\csv_postgres_pipeline\cli.py:239: [R0911(too-many-return-statements), _handle_batch_mode] Too many return statements (7/6)
+src\csv_postgres_pipeline\cli.py:15: [W0611(unused-import), ] Unused import reporter
+************* Module src.csv_postgres_pipeline.database
+src\csv_postgres_pipeline\database.py:151: [C0301(line-too-long), ] Line too long (101/100)
+src\csv_postgres_pipeline\database.py:177: [R1705(no-else-return), get_table_schema] Unnecessary "else" after "return", remove the "else" and de-indent the code inside it
+src\csv_postgres_pipeline\database.py:236: [W0718(broad-exception-caught), validate_connection] Catching too general exception Exception
+************* Module src.csv_postgres_pipeline.exceptions
+src\csv_postgres_pipeline\exceptions.py:7: [W0107(unnecessary-pass), CSVPipelineError] Unnecessary pass statement
+src\csv_postgres_pipeline\exceptions.py:13: [W0107(unnecessary-pass), ValidationError] Unnecessary pass statement
+src\csv_postgres_pipeline\exceptions.py:19: [W0107(unnecessary-pass), DatabaseError] Unnecessary pass statement
+src\csv_postgres_pipeline\exceptions.py:25: [W0107(unnecessary-pass), FileProcessingError] Unnecessary pass statement
+src\csv_postgres_pipeline\exceptions.py:31: [W0107(unnecessary-pass), ConfigurationError] Unnecessary pass statement
+************* Module src.csv_postgres_pipeline.executor
+src\csv_postgres_pipeline\executor.py:144: [W0718(broad-exception-caught), BatchExecutor.process_batch] Catching too general exception Exception
+src\csv_postgres_pipeline\executor.py:242: [W0718(broad-exception-caught), BatchExecutor._process_single_file] Catching too general exception Exception
+src\csv_postgres_pipeline\executor.py:225: [R1705(no-else-return), BatchExecutor._process_single_file] Unnecessary "else" after "return", remove the "else" and de-indent the code inside it
+src\csv_postgres_pipeline\executor.py:40: [R0903(too-few-public-methods), BatchExecutor] Too few public methods (1/2)
+src\csv_postgres_pipeline\executor.py:6: [W0611(unused-import), ] Unused Path imported from pathlib
+************* Module src.csv_postgres_pipeline.loader
+src\csv_postgres_pipeline\loader.py:240: [C0301(line-too-long), ] Line too long (105/100)
+src\csv_postgres_pipeline\loader.py:24: [W0404(reimported), ] Reimport 'sql' (imported line 6)
+src\csv_postgres_pipeline\loader.py:27: [R0914(too-many-locals), load_csv_to_table] Too many local variables (22/15)
+src\csv_postgres_pipeline\loader.py:27: [R0912(too-many-branches), load_csv_to_table] Too many branches (13/12)
+src\csv_postgres_pipeline\loader.py:27: [R0915(too-many-statements), load_csv_to_table] Too many statements (68/50)
+src\csv_postgres_pipeline\loader.py:24: [C0411(wrong-import-order), ] third party import "psycopg.sql" should be placed before first party imports "csv_postgres_pipeline.models.CSVFile", "csv_postgres_pipeline.database.create_connection_pool", "csv_postgres_pipeline.exceptions.FileProcessingError", "csv_postgres_pipeline.reporter.log_progress" 
+src\csv_postgres_pipeline\loader.py:24: [C0412(ungrouped-imports), ] Imports from package psycopg are not grouped
+************* Module src.csv_postgres_pipeline.models
+src\csv_postgres_pipeline\models.py:101: [C0301(line-too-long), ] Line too long (118/100)
+src\csv_postgres_pipeline\models.py:250: [C0301(line-too-long), ] Line too long (102/100)
+src\csv_postgres_pipeline\models.py:266: [R0914(too-many-locals), TableSchema.validate_csv_columns] Too many local variables (16/15)
+************* Module src.csv_postgres_pipeline.validator
+src\csv_postgres_pipeline\validator.py:84: [C0301(line-too-long), ] Line too long (104/100)
+src\csv_postgres_pipeline\validator.py:94: [W0707(raise-missing-from), validate_csv_file] Consider explicitly re-raising using 'except StopIteration as exc' and 'raise ValidationError('CSV file is empty') from exc'
+
+------------------------------------------------------------------
+Your code has been rated at 8.87/10 (previous run: 8.87/10, +0.00)
+

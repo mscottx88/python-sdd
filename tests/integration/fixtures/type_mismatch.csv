@@ -1,0 +1,4 @@
+id,name,age,salary
+1,John Doe,invalid_age,50000.00
+2,Jane Smith,25,60000.00
+3,Bob Johnson,30,not_a_number

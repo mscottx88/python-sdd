@@ -1,0 +1,7 @@
+id,name,description,status
+1,"John Doe","Simple quoted field",active
+2,"Jane Smith","Field with, comma",active
+3,"Bob Jones","Field with ""escaped quotes""",active
+4,"Alice Brown","Field with
+embedded newline",pending
+5,NoQuotes,Plain text field,active
