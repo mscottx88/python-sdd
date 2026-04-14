@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=82.0.1", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -15,9 +15,9 @@ requires-python = ">=3.13"
 readme = "README.md"
 
 dependencies = [
-    "psycopg[binary]>=3.2.0",
+    "psycopg[binary]>=3.3.3",
     "psycopg-pool>=3.2.0",
-    "pydantic>=2.0.0",
+    "pydantic>=2.13.0",
 ]
 
 [project.scripts]
@@ -25,11 +25,11 @@ csv-postgres-pipeline = "src.csv_postgres_pipeline.cli:main"
 
 [project.optional-dependencies]
 dev = [
-  "pytest>=8.0.0",
-  "pytest-cov>=6.0.0",
+  "pytest>=9.0.3",
+  "pytest-cov>=7.1.0",
   "pytest-mock>=3.15.1",
-  "mypy>=1.0.0",
-  "ruff>=0.8.0",
+  "mypy>=1.20.1",
+  "ruff>=0.15.10",
   "pre-commit>=4.0.0"
 ]
 
@@ -152,6 +152,6 @@ markers = [
 
 [dependency-groups]
 dev = [
-    "pytest-cov>=7.0.0",
+    "pytest-cov>=7.1.0",
     "pytest-dotenv>=0.5.2",
 ]
